@@ -8,8 +8,5 @@ for word in words:
     elif word.endswith(','):
         new_text.append(word.replace(',', 'ing,'))
     else:
-        new_text.append(word+'ing')
+        new_text.append(word + 'ing')
 print(' '.join(new_text))
-
-
-
