@@ -7,7 +7,7 @@ PRICE_LIST = '''тетрадь 50р
 рюкзак 500р'''
 
 list = PRICE_LIST.split()
-items = [x for x in list if int(list.index(x)) % 2 ==0]
+items = [x for x in list if int(list.index(x)) % 2 == 0]
 prices = [int(x[:-1]) for x in list if int(list.index(x)) % 2 != 0]
 my_dict = dict(zip(items, prices))
 print(my_dict)

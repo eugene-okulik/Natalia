@@ -11,6 +11,7 @@ def my_dec(func):
             func(a, b, '/')
     return wrapper
 
+
 @my_dec
 def calc(first, second, operation):
     if operation == '+':
@@ -20,8 +21,9 @@ def calc(first, second, operation):
     elif operation == '*':
         return first * second
     else:
-        return first/second
+        return first / second
+
 
 a = int(input('Type the first digit '))
 b = int(input('Type the second digit '))
-calc(a,b)
+calc(a, b)
