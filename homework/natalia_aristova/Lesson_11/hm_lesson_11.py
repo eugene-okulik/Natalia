@@ -3,7 +3,6 @@ class Book:
     page_material = 'paper'
     text = True
 
-
     def __init__(self, title, author, number_of_pages, isbn, reserved):
         self.title = title
         self.author = author
@@ -11,11 +10,10 @@ class Book:
         self.isbn = isbn
         self.reserved = reserved
 
-
     def info(self):
-        if self.reserved == True:
+        if self.reserved is True:
             print(f' Название: {self.title}, Автор: {self.author}, страниц: {self.number_of_pages},'
-                  f' материал: {self.page_material}, зарезервирована' )
+                  f' материал: {self.page_material}, зарезервирована')
         else:
             print(f' Название: {self.title}, Автор: {self.author}, страниц: {self.number_of_pages},'
                   f' материал: {self.page_material}')
@@ -38,18 +36,16 @@ book_5.info()
 
 class Schoolbook(Book):
 
-
-    def __init__(self, title, author, number_of_pages, isbn, reserved, subject, grade, tasks ):
+    def __init__(self, title, author, number_of_pages, isbn, reserved, subject, grade, tasks):
         super().__init__(title, author, number_of_pages, isbn, reserved)
         self.subject = subject
         self.grade = grade
         self.tasks = tasks
 
-
     def info1(self):
-        if self.reserved == True:
+        if self.reserved is True:
             print(f' Название: {self.title}, Автор: {self.author}, страниц: {self.number_of_pages},'
-                  f' предмет: {self.subject}, класс: {self.grade},  зарезервирована' )
+                  f' предмет: {self.subject}, класс: {self.grade},  зарезервирована')
         else:
             print(f' Название: {self.title}, Автор: {self.author}, страниц: {self.number_of_pages},'
                   f' предмет: {self.subject}, класс: {self.grade}')
@@ -62,7 +58,7 @@ schoolbook2 = Schoolbook('History', 'Ivanov', 466, 6661, False, 'History',
 schoolbook3 = Schoolbook('English', 'Smith', 426, 6662, False, 'English',
                          5, True)
 schoolbook4 = Schoolbook('Russian', 'Petrov', 421, 66692, False,
-                         'Russian',5, True)
+                         'Russian', 5, True)
 
 schoolbook1.reserved = True
 
