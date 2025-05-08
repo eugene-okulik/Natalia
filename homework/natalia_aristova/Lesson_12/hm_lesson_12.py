@@ -1,5 +1,6 @@
 import operator
 
+
 class Flower:
     def __init__(self, name, freshness, color, stem_length, price, life):
         self.name = name
