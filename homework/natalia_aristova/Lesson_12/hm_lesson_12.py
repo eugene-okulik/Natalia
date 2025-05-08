@@ -53,7 +53,7 @@ class Buket:
         self.flowers.sort(key=lambda f: getattr(f, attribute))
 
     def find_by_lifes(self):                           # взято из gpt, но я это понимаю
-        return [f for f in self.flowers if f.life >= self.avg_life ]
+        return [f for f in self.flowers if f.life >= self.avg_life]
 
 
 print(tulip)
