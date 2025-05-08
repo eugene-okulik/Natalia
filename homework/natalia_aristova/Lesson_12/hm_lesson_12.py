@@ -44,6 +44,7 @@ forget_me_not = Forget_me_not('Forget-me-not', 1, 'purple', 6, 15, 2,
 class Buket:
     def __init__(self, flowers):
         self.flowers = flowers
+        self.avg_life = self.average_life()
 
     def average_life(self):
         return round(sum(i.life for i in self.flowers) / len(self.flowers), 2)
@@ -51,8 +52,8 @@ class Buket:
     def sort_by(self, attribute):                                 # начиная отсюда  совсем не понимаю( взято из gpt
         self.flowers.sort(key=lambda f: getattr(f, attribute))
 
-    def find_by_lifes(self, min_days):                           # взято из gpt, но я это понимаю
-        return [f for f in self.flowers if f.life >= min_days]
+    def find_by_lifes(self):                           # взято из gpt, но я это понимаю
+        return [f for f in self.flowers if f.life >= self.avg_life ]
 
 
 print(tulip)
@@ -60,5 +61,5 @@ print(rose)
 print(forget_me_not)
 bouquet = Buket([tulip, rose, forget_me_not])
 print(bouquet.sort_by('freshness'))
-print(bouquet.find_by_lifes(1))
+print(bouquet.find_by_lifes())
 print(bouquet.average_life())
