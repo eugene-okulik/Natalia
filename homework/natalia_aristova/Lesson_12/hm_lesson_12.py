@@ -1,3 +1,5 @@
+import operator
+
 class Flower:
     def __init__(self, name, freshness, color, stem_length, price, life):
         self.name = name
@@ -49,10 +51,19 @@ class Buket:
     def average_life(self):
         return round(sum(i.life for i in self.flowers) / len(self.flowers), 2)
 
-    def sort_by(self, attribute):                                 # начиная отсюда  совсем не понимаю( взято из gpt
-        self.flowers.sort(key=lambda f: getattr(f, attribute))
+    def sort_by_price(self):
+        return sorted(self.flowers, key=operator.attrgetter('price'))
 
-    def find_by_lifes(self):                           # взято из gpt, но я это понимаю
+    def sort_by_color(self):
+        return sorted(self.flowers, key=operator.attrgetter('color'))
+
+    def sort_by_stem_length(self):
+        return sorted(self.flowers, key=operator.attrgetter('stem_length'))
+
+    def sort_by_freshness(self):
+        return sorted(self.flowers, key=operator.attrgetter('freshness'))
+
+    def find_by_lifes(self):
         return [f for f in self.flowers if f.life >= self.avg_life]
 
 
@@ -60,6 +71,9 @@ print(tulip)
 print(rose)
 print(forget_me_not)
 bouquet = Buket([tulip, rose, forget_me_not])
-print(bouquet.sort_by('freshness'))
-print(bouquet.find_by_lifes())
 print(bouquet.average_life())
+print(bouquet.sort_by_price())
+print(bouquet.sort_by_color())
+print(bouquet.sort_by_stem_length())
+print(bouquet.sort_by_freshness())
+print(bouquet.find_by_lifes())
