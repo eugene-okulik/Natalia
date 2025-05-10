@@ -11,6 +11,6 @@ with open(hw13_path, 'r', encoding='utf-8') as data_file:
         if 'дату' in line:
             print(f'Через неделю будет {data + timedelta(days=7)}')
         elif 'день' in line:
-            print(f"{data} - это {datetime.strptime(line[3:29],'%Y-%m-%d %H:%M:%S.%f' ).strftime('%A')}")
+            print(f"{data} - это {data.strftime('%A')}")
         elif 'дней' in line:
             print(f'{(datetime.now() - data).days} дней назад была дата {data}')
