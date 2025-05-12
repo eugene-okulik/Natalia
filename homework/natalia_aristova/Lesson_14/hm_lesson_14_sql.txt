@@ -1,0 +1,45 @@
+INSERT INTO students (name, second_name) VALUES ('Natalia', 'Aristova')  
+SELECT id FROM students WHERE name = 'Natalia' and second_name = 'Aristova'
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('War and Piece', 20299) 
+INSERT INTO books (title, taken_by_student_id) VALUES ('Idiot', 20299) 
+INSERT INTO books (title, taken_by_student_id) VALUES ('One flew over the cuckoos nest', 20299) 
+SELECT id FROM books WHERE taken_by_student_id = 20299
+
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('AQA', 'march 2025', 'march 2067')
+SELECT id from `groups` WHERE title = 'AQA'
+
+UPDATE students SET group_id = 5030 WHERE id = 20299
+
+INSERT INTO subjets (title) VALUES ('maths') 
+INSERT INTO subjets (title) VALUES ('bio')  
+SELECT id from subjets WHERE title = 'maths'or title = 'bio'
+
+INSERT INTO lessons (title, subject_id) VALUES ('lesson_maths_1', 10266) 
+INSERT INTO lessons (title, subject_id) VALUES ('lesson_maths_2', 10266) 
+INSERT INTO lessons (title, subject_id) VALUES ('lesson_bio_1', 10267) 
+INSERT INTO lessons (title, subject_id) VALUES ('lesson_bio_2', 10267) 
+SELECT * from lessons WHERE subject_id = 10266 or subject_id = 10267
+
+INSERT INTO marks (value, lesson_id, student_id) VALUES (5, 9737, 20299)
+INSERT INTO marks (value, lesson_id, student_id) VALUES (5, 9738, 20299) 
+INSERT INTO marks (value, lesson_id, student_id) VALUES (5, 9739, 20299) 
+INSERT INTO marks (value, lesson_id, student_id) VALUES (5, 9740, 20299) 
+
+SELECT value from marks where student_id = 20299
+
+SELECT id, title FROM books WHERE taken_by_student_id = 20299
+
+SELECT  DISTINCT s.name as 'Student name', s.second_name as 'Student last name', g.title as 'Group name', m.value as 'Mark', b.title as 'Book title', l.title as 'Lesson', w.title as 'Subject' 
+FROM students s 
+left join books b 
+on s.id = b.taken_by_student_id
+left join `groups` g
+on s.group_id = g.id
+left join marks m
+on s.id = m.student_id
+left join lessons l
+on m.lesson_id = l.id
+left join subjets w
+on l.subject_id = w.id
+WHERE s.id = 20299
