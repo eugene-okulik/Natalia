@@ -71,23 +71,23 @@ values_marks = [
 cursor.executemany(query_marks, values_marks)
 db.commit()
 final_query = '''SELECT 
-s.name AS "Student name", 
-s.second_name AS "Student last name", 
-g.title AS "Group name", 
-m.value AS "Mark", 
-GROUP_CONCAT(b.title) AS "Book title", 
-l.title AS "Lesson", 
+s.name AS "Student name",
+s.second_name AS "Student last name",
+g.title AS "Group name",
+m.value AS "Mark",
+GROUP_CONCAT(b.title) AS "Book title",
+l.title AS "Lesson",
 w.title AS "Subject"
-FROM 
-students s 
+FROM
+students s
 LEFT JOIN books b ON s.id = b.taken_by_student_id
 LEFT JOIN `groups` g ON s.group_id = g.id
 LEFT JOIN marks m ON s.id = m.student_id
 LEFT JOIN lessons l ON m.lesson_id = l.id
 LEFT JOIN subjets w ON l.subject_id = w.id
-WHERE 
+WHERE
 s.id = %s
-GROUP BY 
+GROUP BY
 s.id, s.name, s.second_name, g.title, m.value, l.title, w.title;
 '''
 cursor.execute(final_query, (student_id, ))
