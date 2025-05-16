@@ -18,9 +18,9 @@ student_id = cursor.lastrowid
 
 query_books = 'INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)'
 values_books = [
-    ('War and Piece', student_id ),
-    ('Idiot', student_id ),
-    ('One flew over the cuckoos nest', student_id )
+    ('War and Piece', student_id),
+    ('Idiot', student_id),
+    ('One flew over the cuckoos nest', student_id)
 ]
 cursor.executemany(query_books, values_books)
 db.commit()
@@ -34,11 +34,11 @@ cursor.execute(f'UPDATE students SET group_id = {group_id} WHERE id = {student_i
 db.commit()
 
 query_subjects = 'INSERT INTO subjets (title) VALUES (%s)'
-value_sub_1=['English_beginner']
+value_sub_1 = ['English_beginner']
 cursor.execute(query_subjects, value_sub_1)
 db.commit()
 sub1_id = cursor.lastrowid
-value_sub_2=['Deutsch']
+value_sub_2 = ['Deutsch']
 cursor.execute(query_subjects, value_sub_2)
 db.commit()
 sub2_id = cursor.lastrowid
@@ -71,24 +71,24 @@ values_marks = [
 cursor.executemany(query_marks, values_marks)
 db.commit()
 final_query = '''SELECT 
-    s.name AS "Student name", 
-    s.second_name AS "Student last name", 
-    g.title AS "Group name", 
-    m.value AS "Mark", 
-    GROUP_CONCAT(b.title) AS "Book title", 
-    l.title AS "Lesson", 
-    w.title AS "Subject"
+s.name AS "Student name", 
+s.second_name AS "Student last name", 
+g.title AS "Group name", 
+m.value AS "Mark", 
+GROUP_CONCAT(b.title) AS "Book title", 
+l.title AS "Lesson", 
+w.title AS "Subject"
 FROM 
-    students s 
-    LEFT JOIN books b ON s.id = b.taken_by_student_id
-    LEFT JOIN `groups` g ON s.group_id = g.id
-    LEFT JOIN marks m ON s.id = m.student_id
-    LEFT JOIN lessons l ON m.lesson_id = l.id
-    LEFT JOIN subjets w ON l.subject_id = w.id
+students s 
+LEFT JOIN books b ON s.id = b.taken_by_student_id
+LEFT JOIN `groups` g ON s.group_id = g.id
+LEFT JOIN marks m ON s.id = m.student_id
+LEFT JOIN lessons l ON m.lesson_id = l.id
+LEFT JOIN subjets w ON l.subject_id = w.id
 WHERE 
-    s.id = %s
+s.id = %s
 GROUP BY 
-    s.id, s.name, s.second_name, g.title, m.value, l.title, w.title;
+s.id, s.name, s.second_name, g.title, m.value, l.title, w.title;
 '''
 cursor.execute(final_query, (student_id, ))
 print(cursor.fetchall())
