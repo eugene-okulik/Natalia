@@ -70,7 +70,7 @@ values_marks = [
 ]
 cursor.executemany(query_marks, values_marks)
 db.commit()
-final_query = '''SELECT 
+final_query = '''SELECT
 s.name AS "Student name",
 s.second_name AS "Student last name",
 g.title AS "Group name",
