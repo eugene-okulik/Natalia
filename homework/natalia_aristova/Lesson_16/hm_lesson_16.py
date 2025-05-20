@@ -16,7 +16,7 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 
-query='''SELECT  DISTINCT s.name, s.second_name, g.title as 'group_title', b.title as 'book_title',
+query = '''SELECT  DISTINCT s.name, s.second_name, g.title as 'group_title', b.title as 'book_title',
 w.title as 'subject_title', l.title as 'lesson_title',  m.value as 'mark_value'
 FROM students s
 left join books b
@@ -43,7 +43,7 @@ with open(hw16_path, newline='') as csv_file:
     file_data = csv.DictReader(csv_file)
     data = []
     for row in file_data:
-            data.append(row)
+        data.append(row)
 
 missed_data = []
 for i in data:
