@@ -1,6 +1,7 @@
 import argparse
 import os
 
+
 def extract_context(line, keyword):
     words = line.strip().split()
     context = []
@@ -11,6 +12,7 @@ def extract_context(line, keyword):
             context = words[start:end]
             break
     return " ".join(context)
+
 
 def search_logs(folder_path, keyword, show_all):
     if not os.path.isdir(folder_path):
@@ -30,6 +32,7 @@ def search_logs(folder_path, keyword, show_all):
                                 return
             except Exception as e:
                 print(f"Ошибка при чтении файла {filename}: {e}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
