@@ -18,7 +18,7 @@ def new_post():                                           # прекондишн
 
 
 def clear(post_id):                                       # посткондишн
-    response = requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+    requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
 
 
 def get_one_post():
@@ -44,8 +44,8 @@ def post_a_new_post():
 def put():
     post_id = new_post()
     body = {
-        "data" : {"color":"white", "size":"big"},
-        "name" : "test object"
+        "data": {"color": "white", "size": "big"},
+        "name": "test object"
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.put(f'http://167.172.172.115:52353/object/{post_id}',
