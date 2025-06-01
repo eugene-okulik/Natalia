@@ -32,7 +32,6 @@ def text_for_every_test():
 @pytest.mark.critical
 def test_get_all_objects(hello, text_for_every_test):
     response = requests.get('http://167.172.172.115:52353/object')
-    #assert len(response.json()['data']) == 113, 'Not all posts returned'
     assert response.status_code == 200, 'Status code is incorrect'
 
 
@@ -42,15 +41,13 @@ def test_get_one_object(text_for_every_test, new_object):
 
 
 @pytest.mark.medium
-@pytest.mark.parametrize('body', [{"data": {"color": "red", "size": "medium"},"name": "New object"},
-                                  {"data": {"color": "green", "size": "small"},"name": "Old object"},
-                                  {"data": {"color": "white", "size": "big"},"name": "7th object"}])
+@pytest.mark.parametrize('body', [{"data": {"color": "red", "size": "medium"}, "name": "New object"},
+                                  {"data": {"color": "green", "size": "small"}, "name": "Old object"},
+                                  {"data": {"color": "white", "size": "big"}, "name": "7th object"}])
 def test_post_a_new_object(text_for_every_test, body):
-    #body = {"data": {"color": "yellow", "size": "medium"},"name": "Second object"}
     headers = {'Content-Type': 'application/json'}
     response = requests.post('http://167.172.172.115:52353/object', json=body, headers=headers)
     assert response.status_code == 200, 'Status code is incorrect'
-    #assert response.json()['id'] == 2, 'Id is incorrect'
 
 
 def test_put(text_for_every_test, new_object):
