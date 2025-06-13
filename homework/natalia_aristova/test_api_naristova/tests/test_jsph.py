@@ -1,6 +1,5 @@
 import pytest
 
-from Natalia.homework.natalia_aristova.test_api_naristova.conftest import delete_object
 
 TEST_DATA = [
     {"data": {"color": "white", "size": "big"}, "name": "Second object"},
