@@ -6,6 +6,7 @@ from endpoints.get_one_object import GetOneObject
 from endpoints.patch_object import PatchObject
 from endpoints.delete_object import DeleteObject
 
+
 @pytest.fixture()
 def create_post_endpoint():
     return CreatePost()
@@ -24,6 +25,7 @@ def patch_object():
 @pytest.fixture()
 def get_all_objects():
     return GetAllObjects()
+
 
 @pytest.fixture()
 def get_one_object():

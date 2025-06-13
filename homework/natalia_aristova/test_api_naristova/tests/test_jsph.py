@@ -3,7 +3,7 @@ import pytest
 from Natalia.homework.natalia_aristova.test_api_naristova.conftest import delete_object
 
 TEST_DATA = [
-    {"data": {"color": "white", "size": "big"},"name": "Second object"},
+    {"data": {"color": "white", "size": "big"}, "name": "Second object"},
     {"data": {"color": "red", "size": "medium"}, "name": "New object"},
     {"data": {"color": "green", "size": "small"}, "name": "Old object"},
     {"data": {"color": "white", "size": "big"}, "name": "7th object"}
@@ -22,7 +22,6 @@ def test_post_a_new_object(create_post_endpoint, data, delete_object):
     create_post_endpoint.check_response_name_is_correct(data['name'])
     id_of_created_object = create_post_endpoint.new_post(body=data).json()['id']
     delete_object.delete_object(id_of_created_object)
-
 
 
 @pytest.mark.parametrize('data', NEGATIVE_DATA)
@@ -70,7 +69,6 @@ def test_patch(create_post_endpoint, patch_object, delete_object):
     patch_object.check_response_name_is_correct(body['name'])
     patch_object.check_status_code_is_correct()
     delete_object.delete_object(id_of_created_object)
-
 
 
 def test_delete(create_post_endpoint, delete_object):

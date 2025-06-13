@@ -3,6 +3,7 @@ import allure
 
 from Natalia.homework.natalia_aristova.test_api_naristova.endpoints.endpoint import Endpoint
 
+
 class GetAllObjects(Endpoint):
 
     @allure.step('Get list of all objects')

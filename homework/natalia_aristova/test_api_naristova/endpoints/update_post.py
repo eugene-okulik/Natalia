@@ -3,6 +3,7 @@ import allure
 
 from Natalia.homework.natalia_aristova.test_api_naristova.endpoints.endpoint import Endpoint
 
+
 class UpdatePost(Endpoint):
 
     @allure.step('Update an object')

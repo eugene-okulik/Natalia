@@ -19,5 +19,3 @@ class Endpoint:
     @allure.step(f'Check that 400 error received')
     def check_bad_request(self):
         assert self.response.status_code == 400, 'Status code is not correct'
-
-
