@@ -1,7 +1,7 @@
 import requests
 import allure
 
-from Natalia.homework.natalia_aristova.test_api_naristova.endpoints.endpoint import Endpoint
+from test_api_naristova.endpoints.endpoint import Endpoint
 
 
 class GetOneObject(Endpoint):

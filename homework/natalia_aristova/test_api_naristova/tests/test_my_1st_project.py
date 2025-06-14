@@ -15,7 +15,7 @@ NEGATIVE_DATA = [
 
 
 @pytest.mark.parametrize('data', TEST_DATA)
-def test_post_a_new_object(create_post_endpoint, data, delete_object):
+def test_post_a_new_object(create_post_endpoint, data, delete_object, hello):
     create_post_endpoint.new_post(body=data)
     create_post_endpoint.check_status_code_is_correct()
     create_post_endpoint.check_response_name_is_correct(data['name'])
@@ -29,12 +29,8 @@ def test_post_with_negative_data(create_post_endpoint, data):
     create_post_endpoint.check_bad_request()
 
 
-def test_put(create_post_endpoint, update_post_endpoint, delete_object):
-    body = {
-        "data": {"color": "white", "size": "big"},
-        "name": "test object"
-    }
-    id_of_created_object = create_post_endpoint.new_post(body=body).json()['id']
+def test_put(update_post_endpoint, new_object):
+    id_of_created_object = new_object
     body = {
         "data": {"color": "white", "size": "big"},
         "name": "test object"
@@ -42,7 +38,6 @@ def test_put(create_post_endpoint, update_post_endpoint, delete_object):
     update_post_endpoint.make_changes_in_object(id_of_created_object, body)
     update_post_endpoint.check_status_code_is_correct()
     update_post_endpoint.check_response_name_is_correct(body['name'])
-    delete_object.delete_object(id_of_created_object)
 
 
 def test_get_all_objects(get_all_objects):
@@ -50,31 +45,23 @@ def test_get_all_objects(get_all_objects):
     get_all_objects.check_status_code_is_correct()
 
 
-def test_get_one_object(get_one_object):
-    get_one_object.get_one_object(1)
+def test_get_one_object(get_one_object, new_object):
+    id_of_created_object = new_object
+    get_one_object.get_one_object(id_of_created_object)
     get_one_object.check_status_code_is_correct()
 
 
-def test_patch(create_post_endpoint, patch_object, delete_object):
-    body = {
-        "data": {"color": "white", "size": "big"},
-        "name": "test object"
-    }
-    id_of_created_object = create_post_endpoint.new_post(body=body).json()['id']
+def test_patch(patch_object, new_object):
+    id_of_created_object = new_object
     body = {
         "name": "new object"
     }
     patch_object.patch(id_of_created_object, body)
     patch_object.check_response_name_is_correct(body['name'])
     patch_object.check_status_code_is_correct()
-    delete_object.delete_object(id_of_created_object)
 
 
-def test_delete(create_post_endpoint, delete_object):
-    body = {
-        "data": {"color": "white", "size": "big"},
-        "name": "test object"
-    }
-    id_of_created_object = create_post_endpoint.new_post(body=body).json()['id']
+def test_delete(delete_object, new_object):
+    id_of_created_object = new_object
     delete_object.delete_object(id_of_created_object)
     delete_object.check_status_code_is_correct()

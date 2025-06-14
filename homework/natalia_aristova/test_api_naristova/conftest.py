@@ -1,10 +1,19 @@
 import pytest
-from endpoints.create_object import CreatePost
-from endpoints.update_post import UpdatePost
-from endpoints.get_all_objects import GetAllObjects
-from endpoints.get_one_object import GetOneObject
-from endpoints.patch_object import PatchObject
-from endpoints.delete_object import DeleteObject
+import requests
+from test_api_naristova.endpoints.create_object import CreatePost
+from test_api_naristova.endpoints.update_post import UpdatePost
+from test_api_naristova.endpoints.get_all_objects import GetAllObjects
+from test_api_naristova.endpoints.get_one_object import GetOneObject
+from test_api_naristova.endpoints.patch_object import PatchObject
+from test_api_naristova.endpoints.delete_object import DeleteObject
+from test_api_naristova.endpoints.endpoint import Endpoint
+
+
+@pytest.fixture(scope='session')
+def hello():
+    print('Start testing')
+    yield
+    print('Testing completed')
 
 
 @pytest.fixture()
@@ -35,3 +44,16 @@ def get_one_object():
 @pytest.fixture()
 def delete_object():
     return DeleteObject()
+
+
+@pytest.fixture()
+def new_object():
+    precondition_object = Endpoint()
+    body = {
+        "data": {"color": "white", "size": "big"},
+        "name": "Second object"
+    }
+    response = requests.post(precondition_object.url, json=body, headers=precondition_object.headers)
+    id_of_new_object = response.json()['id']
+    yield id_of_new_object
+    requests.delete(f'{precondition_object.url}/{id_of_new_object}')
