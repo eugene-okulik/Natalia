@@ -47,13 +47,12 @@ def delete_object():
 
 
 @pytest.fixture()
-def new_object():
-    precondition_object = Endpoint()
+def new_object(create_post_endpoint, delete_object):
     body = {
         "data": {"color": "white", "size": "big"},
         "name": "Second object"
     }
-    response = requests.post(precondition_object.url, json=body, headers=precondition_object.headers)
+    response = create_post_endpoint.new_post(body=body)
     id_of_new_object = response.json()['id']
     yield id_of_new_object
-    requests.delete(f'{precondition_object.url}/{id_of_new_object}')
+    delete_object.delete_object(object_id=id_of_new_object)

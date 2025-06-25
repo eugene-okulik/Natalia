@@ -13,7 +13,7 @@ class Endpoint:
         assert response_json['name'] == name, 'Name is incorrect'
 
     @allure.step('Check that status code is 200')
-    def check_status_code_is_correct(self):
+    def check_status_code_is_200(self):
         assert self.response.status_code == 200, 'Status code is incorrect'
 
     @allure.step('Check that 400 error received')
